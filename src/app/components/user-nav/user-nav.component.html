@@ -1,0 +1,26 @@
+<section>
+  <p-menubar [model]="items" class="m-2">
+    <ng-template #start>
+      <figure class="my-0 mx-2 ">
+        <img src="../../../assets/images/platzi.png" alt="Platzi Logo" class="w-2rem" />
+      </figure>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+      <a pRipple class="flex items-center px-4 py-3 cursor-pointer gap-2" [routerLink]="item?.path"
+        routerLinkActive="active">
+        <span [class]="item.icon"></span>
+        <span>{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <ng-template #end>
+      <div class="card flex justify-content-center justify-items-center gap-3">
+        <a>
+          <i class="pi pi-shopping-cart text-3xl" pBadge value="3"></i>
+        </a>
+        <a class="p-2 border-round-xl bg-orange-400 font-bold capitalize relative username">
+          <span>{{ username }}</span>
+        </a>
+      </div>
+    </ng-template>
+  </p-menubar>
+</section>

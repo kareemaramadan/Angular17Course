@@ -1,0 +1,42 @@
+:root {
+  --stamp-red: #c61d23;
+}
+
+.stamp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fdfdfd;
+}
+
+.stamp-border {
+  display: flex;
+  align-items: center;
+  border: 8px solid var(--stamp-red);
+  border-radius: 25px;
+  padding: 10px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  transform: rotate(-20deg);
+  color: var(--stamp-red);
+  -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
+}
+
+.icon {
+  font-size: 80px;
+  margin: 0 20px;
+  line-height: 1;
+}
+
+.text-box {
+  background-color: var(--stamp-red);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-size: 50px;
+  letter-spacing: 2px;
+}

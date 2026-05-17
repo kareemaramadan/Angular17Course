@@ -1,0 +1,24 @@
+.p-menubar-item-content {
+  border: none;
+  background-color: lightgreen;
+}
+
+#pn_id_2_badge {
+  background-color: red;
+}
+
+.username {
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    transform: translate(45%, 100%);
+    -webkit-transform: translate(45%, 100%);
+    -moz-transform: translate(45%, 100%);
+    -ms-transform: translate(45%, 100%);
+    -o-transform: translate(45%, 100%);
+    border-width: 15px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+  }
+}

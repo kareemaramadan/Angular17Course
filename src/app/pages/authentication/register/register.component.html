@@ -1,0 +1,151 @@
+<ngx-spinner bdColor="rgba(0,0,0,0.7)" size="medium" color="#3f51b5" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<section>
+  <!-- Register form with validation and error messages -->
+  <div class="container bg-main-gradient shadow-black-card animate-duration-500 animate-slidefadein my-8 w-6 m-auto">
+    <h1 class="my-3 font-bold capitalize text-4xl">register form</h1>
+    <!-- Form with validation and error messages -->
+    <form action="" [formGroup]="registerform" (ngSubmit)="Onsubmit()">
+      <!-- Username field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-user"></i>
+          </p-inputGroupAddon>
+          <input pInputText [pAutoFocus]="true" placeholder="Name" formControlName="name" />
+        </p-inputGroup>
+        <div class="card">
+          @if(this.name.dirty && this.name.touched)
+          {
+          @if (this.name.getError('required'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Name is
+            required</p-message>
+          }
+          @if (this.name.getError('minlength'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Username must be at least 6 characters long</p-message>
+          }
+          @if (this.name.getError('maxlength'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Username must be at most 20 characters long</p-message>
+          }
+          }
+        </div>
+      </div>
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-user"></i>
+          </p-inputGroupAddon>
+          <input pInputText placeholder="avatar" formControlName="avatar" />
+        </p-inputGroup>
+      </div>
+
+
+      <!-- Email field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-envelope"></i>
+          </p-inputGroupAddon>
+          <input type="text" pInputText placeholder="Email" formControlName="email" />
+        </p-inputGroup>
+        <div class="card">
+          @if(this.email.dirty && this.email.touched)
+          {
+          @if (this.email.getError('required'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Email is required</p-message>
+          }
+
+          @if(this.email.value !== "")
+          {
+          @if (this.email.getError('invalidEmail'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Please enter a valid email</p-message>
+          }
+          }
+          }
+        </div>
+      </div>
+      <!-- Password field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-key"></i>
+          </p-inputGroupAddon>
+          <p-password [toggleMask]="true" autocomplete="off" placeholder="Password" formControlName="password"
+            type="password" id="registerpassword" name="registerpassword" />
+        </p-inputGroup>
+
+        <div class="card">
+          @if(this.password.dirty && this.password.touched)
+          {
+          @if (this.password.getError('required'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Password is
+            required</p-message>
+          }
+          @for (error of this.password.getError('feedback') | keyvalue; track error.key) {
+          <p-message severity="error" [text]="error.value |json" [closable]="false" icon="pi pi-times" />
+          }
+          }
+        </div>
+      </div>
+      <!-- Confirm Password field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-key"></i>
+          </p-inputGroupAddon>
+          <p-password [toggleMask]="true" autocomplete="off" placeholder="Confirm Password" [feedback]="false"
+            formControlName="confirmPassword" type="password" id="confirmPassword" />
+        </p-inputGroup>
+        <div class="card">
+          @if(this.confirmPassword.dirty && this.confirmPassword.touched)
+          {
+          @if(this.confirmPassword.getError('passwordMismatch')) {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Passwords do not match</p-message>
+          }
+
+          }
+        </div>
+      </div>
+      <!-- Submit button -->
+      <p-button label="Submit" [type]="'submit'" [disabled]="this.registerform.invalid" />
+    </form>
+  </div>
+  <div class="card flex justify-center">
+    <p-toast />
+  </div>
+
+
+
+
+  <div class="card flex justify-center">
+    <p-toast />
+    <p-confirmdialog>
+      <ng-template #message let-message>
+        @if (message) {
+        <div class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700">
+          <i [ngClass]="message.icon" class="text-6xl text-primary-500"></i>
+          <p>{{ message.message }}</p>
+        </div>
+        }
+      </ng-template>
+    </p-confirmdialog>
+    <p-button (click)="confirm()" label="Save" />
+  </div>
+
+
+
+</section>

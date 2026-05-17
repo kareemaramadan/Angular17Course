@@ -2,13 +2,19 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "0c0b3718-c05b-40be-9689-b093e292af6a"
   },
   "newProjectRoot": "projects",
   "projects": {
     "AdvancedEcommerce": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -18,15 +24,15 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "src/assets/fontawesome/fontawesome-free-6.5.1-web/css/all.min.css",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeflex/primeflex.css",
               "src/styles.css"
             ],
+            "scripts": ["node_modules/quill/dist/quill.js"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
@@ -62,6 +68,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "ssl": false,
+            "host": "localhost",
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "AdvancedEcommerce:build:production"

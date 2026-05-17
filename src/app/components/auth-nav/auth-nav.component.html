@@ -1,0 +1,23 @@
+<section>
+  <p-menubar>
+    <ng-template #start>
+      <figure class="my-0 mx-2 ">
+        <img src="../../../assets/images/platzi.png" alt="Platzi Logo" class="w-2rem" />
+      </figure>
+    </ng-template>
+
+    <ng-template #end>
+      @for(item of items; track item) {
+      <a pRipple [routerLink]="[item?.['path']]" routerLinkActive="bg-primary text-white"
+        class="text-primary m-1 p-2  hover:text-blue-500  hover:bg-blue-100">
+
+        <span [class]="item.icon"></span>
+        <span>{{item.label}}</span>
+      </a>
+      }
+    </ng-template>
+  </p-menubar>
+</section>
+
+
+<!-- class="p-link inline-flex justify-content-center align-items-centertext-black transition-all transition-duration-200 p-menuitem-link p-2 mx-1 cursor-pointer hover:bg-primary text-white" -->

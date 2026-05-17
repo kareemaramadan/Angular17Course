@@ -1,0 +1,68 @@
+<ngx-spinner bdColor="rgba(0,0,0,0.7)" size="medium" color="#3f51b5" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<section>
+  <!-- Register form with validation and error messages -->
+  <div class="container bg-main-gradient shadow-black-card animate-duration-500 animate-slidefadein my-8 w-6 m-auto">
+    <h1 class="my-3 font-bold capitalize text-4xl">login form</h1>
+    <!-- Form with validation and error messages -->
+    <form action="" [formGroup]="loginform" (ngSubmit)="Onsubmit()">
+      <!-- Email field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-envelope"></i>
+          </p-inputGroupAddon>
+          <input type="text" [pAutoFocus]="true" pInputText placeholder="Email" formControlName="email" />
+        </p-inputGroup>
+        <div class="card">
+          @if(this.email.dirty && this.email.touched)
+          {
+          @if (this.email.getError('required'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Email is required</p-message>
+          }
+
+          @if(this.email.value !== "")
+          {
+          @if (this.email.getError('invalidEmail'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Please enter a valid email</p-message>
+          }
+          }
+          }
+        </div>
+      </div>
+      <!-- Password field with validation and error messages -->
+      <div class="field">
+        <p-inputGroup>
+          <p-inputGroupAddon styleClass="surface-200">
+            <i class="pi pi-key"></i>
+          </p-inputGroupAddon>
+          <p-password [toggleMask]="true" autocomplete="off" [feedback]="false" placeholder="Password"
+            formControlName="password" type="password" id="registerpassword" name="registerpassword" />
+        </p-inputGroup>
+
+        <div class="card">
+          @if(this.password.dirty && this.password.touched)
+          {
+          @if (this.password.getError('required'))
+          {
+          <p-message severity="error" variant="simple" size="small" styleClass="my-1 text-center p-2" [closable]="false"
+            icon="pi pi-times">Password is
+            required</p-message>
+          }
+          @for (error of this.password.getError('feedback') | keyvalue; track error.key) {
+          <p-message severity="error" [text]="error.value |json" [closable]="false" icon="pi pi-times" />
+          }
+          }
+        </div>
+      </div>
+      <!-- Submit button -->
+      <p-button label="Submit" [type]="'submit'" styleClass="btn btn-primary" [disabled]="this.loginform.invalid" />
+      <!-- <button p-button type="submit" Class="authbutton" label="login"></button> -->
+    </form>
+  </div>
+</section>
