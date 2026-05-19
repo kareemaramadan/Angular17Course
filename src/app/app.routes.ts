@@ -36,9 +36,9 @@ export const routes: Routes = [
     path: 'user',
     loadComponent: () =>
       import('./layouts/user-layout/user-layout.component').then((c) => c.UserLayoutComponent),
-    //canActivate: [activateGuard],
-    // canActivateChild: [childActivateGuard],
-    // canMatch: [matchGuard],
+    canActivate: [activateGuard],
+    canActivateChild: [childActivateGuard],
+    canMatch: [matchGuard],
     children: [
       {
         path: '',
